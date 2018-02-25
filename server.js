@@ -12,11 +12,12 @@ var express = require('express');
 var app = express();
 var PORT = process.env.PORT || 5050;
 
+app.use(express.static('app/data'))
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
-require('./app/routing/apiRoutes')(app);
+require('./app/routing/apiRoutes')(app, bodyParser);
 require('./app/routing/htmlRoutes')(app);
 
 // LISTENER - Code to start the server
